@@ -11,6 +11,7 @@ node_exporter-1.3.1.linux-amd64/node_exporter
 ```
 
 Создаем unit-файл:
+
 ![img.png](img.png)
 ```
 vagrant@vagrant:~$ sudo systemctl daemon-reload
