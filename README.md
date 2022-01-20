@@ -24,6 +24,34 @@ vagrant@vagrant:~$ sudo systemctl status node_exporter
 ```
 ![img_1.png](img_1.png)
 
+По опциям запуска добавил Service опции старта из внешнего файла
+```
+vagrant@vagrant:/etc/systemd/system$ cat /etc/systemd/system/node_exporter.service
+[Unit]
+Description=Node Exporter
+After=network.target
+ 
+[Service]
+User=node_exporter
+Group=node_exporter
+Type=simple
+EnvironmentFile=-/etc/default/node_exporter
+ExecStart=/usr/local/bin/node_exporter $OPTIONS
+ 
+[Install]
+WantedBy=multi-user.target
+```
+
+Опции node_exporter, смотрим по man, например:
+```
+/etc/default/node_exporter
+[Service] 
+Environment=”OPTIONS = --collector.cpu.info \
+--collector.cpu \
+--collector.meminfo \
+--collector.diskstats“
+```
+
 2.
 Наиболее полезными опциями мне показались такие:
 ```
